@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+.form-tasks {
+  width: 300px;
+}
+
+#input-task {
+  width: 100%;
+}
+.div-task p {
+  margin: 0;
+}
+
+.item-task {
+  display: flex;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.checked {
+  display: flex;
+  border: 1px solid;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 15px;
+}
