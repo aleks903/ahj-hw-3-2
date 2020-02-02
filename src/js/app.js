@@ -11,6 +11,7 @@ class WorkTasks {
     this.divAllTasks = document.getElementById('all-tasks');
     this.formInput = document.getElementById('input-form');
     this.elementInput = document.getElementById('input-task');
+    this.elementError = document.querySelector('.error');
   }
 
   init() {
@@ -30,9 +31,22 @@ class WorkTasks {
   eventsTasks() {
     this.formInput.addEventListener('submit', (event) => {
       event.preventDefault();
+      const elementValue = this.elementInput.value;
+
+      if (elementValue === '') {
+        this.elementError.classList.remove('hidden');
+        const top = this.elementInput.offsetTop - this.elementError.offsetHeight;
+        this.elementError.style.top = `${top - 5}px`;
+        return;
+      }
+
+      if (!this.elementError.classList.contains('hidden')) {
+        this.elementError.classList.add('hidden');
+      }
+
       arrData.addTask(this.elementInput.value);
-      this.filterTask(this.elementInput.value);
       this.elementInput.value = '';
+      this.filterTask(this.elementInput.value);
     });
 
     this.elementInput.addEventListener('input', () => {
@@ -50,6 +64,12 @@ class WorkTasks {
       if (event.target.className === 'checked') {
         const elmentId = event.target.closest('.item-task').dataset.id;
         this.moveTask(elmentId, true);
+      }
+    });
+
+    this.elementError.addEventListener('click', (event) => {
+      if (event.target.className === 'close-error') {
+        this.elementError.classList.add('hidden');
       }
     });
   }
