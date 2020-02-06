@@ -43,17 +43,28 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png)$/,
+        test: /\.(png|jpg|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
-              esModule: false,
-              name: 'img/[name].[ext]',
+              limit: 8192,
             },
           },
         ],
       },
+      // {
+      //   test: /\.(png)$/,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //       options: {
+      //         esModule: false,
+      //         name: 'img/[name].[ext]',
+      //       },
+      //     },
+      //   ],
+      // },
     ],
   },
 };
